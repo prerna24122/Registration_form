@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>store data</title>
+    <style>
+      html,body{
+        background-image: url(storebackground.png);
+        
+      }
+      button{
+        height: 25px;
+        width: 180px;
+        background-color: black;
+        margin-top: 20px;
+      }
+      button>a{
+        color: white;
+      }
+      button:hover{
+        background-color: brown;
+      }
+    </style>
+  </head>
+  <body>
+    <center>
+    <h1>Student List</h1>
+                <table id="mytable" border="1">
+
+                </table>
+                
+                <button><a href="registration2.html">Back to registration page!!</a></button> 
+    </center>
+       
+     <script>
+    function get_data(){
+    if(localStorage.getItem("student")==null){
+        var studentlist=[];
+    }
+    else{
+        var studentlist=JSON.parse(localStorage.getItem("student"));
+    }
+    display_data(studentlist);
+}
+function display_data(studentlist){
+    var data="";
+     data+="<tr>";
+     data+="<td>";
+     data+="Student name";
+     data+="</td>";
+     data+="<td>";
+     data+="Username";
+     data+="</td>";
+     data+="<td>";
+     data+="Email";
+     data+="</td>";
+     data+="<td>";
+     data+="College Name";
+     data+="</td>";
+     data+="<td>";
+     data+="Number";
+     data+="</td>";
+     data+="</tr>";
+
+     //display for loop
+    studentlist.forEach((element,index) => {
+        data+="<tr>";
+        data+="<td>";
+           data+=element.name;
+           data+="</td>";
+           data+="<td>";
+           data+=element.username;
+           data+="</td>";
+           data+="<td>";
+           data+=element.email;
+           data+="</td>";
+           data+="<td>";
+           data+=element.collegename;
+           data+="</td>";  
+           data+="<td>";
+           data+=element.number;
+           data+="</td>";
+        
+        
+     });
+     data+="</tr>";
+            
+     document.getElementById("mytable").innerHTML=data;
+
+
+}
+document.onload(get_data());
+                
+
+        </script>
+  </body>
+</html>
